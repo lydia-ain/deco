@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Décoration Maison</title>
+    <link rel="icon" type="logo" href="logo.PNG">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f4ef;
+            margin: 0;
+            padding: 0;
+            color: #5a3e2b;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 15px 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #5a3e2b;
+            font-weight: bold;
+        }
+
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('prmr.jpg') no-repeat center center/cover;
+            z-index: -1;
+            animation: zoomEffect 3s infinite alternate ease-in-out;
+        }
+
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .animated-text {
+            font-size: 26px;
+            font-weight: bold;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1.5s ease-out forwards;
+            background: linear-gradient(45deg, #8a583c, #e69a49);
+            color: transparent;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+            justify-content: center;
+        }
+
+        .categories figure {
+            text-align: center;
+        }
+
+        .categories img {
+            width: 100%;
+            max-width: 250px;
+            height: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .categories figcaption {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .categories figure:hover img,
+        .categories figure:hover figcaption {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        footer {
+            background-color: #8a583c;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-col {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .footer-logo {
+            width: 250px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .footer-col h2 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #e69a49a2;
+        }
+
+        .footer-bottom {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .btn-connexion {
+            background-color: #a96b48;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-connexion:hover {
+            background-color: #5a3e2b;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="search-bar">
+            <input type="text" placeholder="Rechercher...">
+        </div>
+        <nav>
+            <a href="insc.html">Mon Compte</a>
+            <a href="#footer">Contactez-nous</a>
+            <a href="propos.html">À propos</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Décorez votre maison</h1>
+            <p>Créez l'intérieur de vos rêves</p>
+            <a href="insc.html" class="btn-connexion">Connexion</a>
+        </div>
+    </section>
+
+    <div class="text-container">
+        <h2 class="animated-text">Trouvez l'inspiration pour votre intérieur ! ✨</h2>
+    </div>
+
+    <section class="categories">
+        <figure><a href="prod.html?categorie=Salon"><img src="salon.jpg" alt="Salon"></a><figcaption>Salon</figcaption></figure>
+        <figure><a href="prod.html?categorie=Cuisine"><img src="cuisine.jpg" alt="Cuisine"></a><figcaption>Cuisine</figcaption></figure>
+        <figure><a href="prod.html?categorie=Jardin"><img src="jardin.jpg" alt="Jardin"></a><figcaption>Jardin</figcaption></figure>
+        <figure><a href="prod.html?categorie=Chambre"><img src="chambre.jpg" alt="Chambre"></a><figcaption>Chambre</figcaption></figure>
+        <figure><a href="prod.html?categorie=Bureau"><img src="bureau.jpg" alt="Bureau"></a><figcaption>Bureau</figcaption></figure>
+        <figure><a href="prod.html?categorie=Salledebain"><img src="sdb.jpg" alt="Salle de bain"></a><figcaption>Salle de bain</figcaption></figure>
+    </section>
+
+    <footer id="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <img src="logo.PNG" alt="Logo de decomai" class="footer-logo">
+                <p>Réalisez votre rêve avec nous !</p>
+            </div>
+            <div class="footer-col">
+                <h2>Rejoignez-nous sur</h2>
+                <ul>
+                    <li><a href="https://www.facebook.com/?locale=fr_FR" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/" target="_blank">Instagram</a></li>
+                    <li><a href="https://workspace.google.com/intl/fr/gmail/">Email</a></li>
+                    <li><a href="tel:+123456789">0542 09 72 99</a></li>
+                    <li><a href="https://www.google.com/maps">Q22X+H3F, Béjaïa</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 DECOMAI. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

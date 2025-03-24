@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil - Admin</title>
+    <link rel="stylesheet" href="profil.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2></h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="ADMIN.html">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html">Produits</a></li>
+                    <li><a href="commandeadmin.html">Commandes</a></li>
+                    <li><a href="clientadmin.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html">Paramètres</a></li>
+                    <li><a href="ventes.html">Ventes</a></li>
+                </ul>
+            </nav>
+        </aside>
+    
+        <main class="main-content">
+            <header class="header">
+                <h1>Profil de l'Utilisateur</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img id="profileImage" src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </header>
+    
+            <section class="profile">
+                <h2>Mes Informations</h2>
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label for="profilePic">Photo de Profil :</label>
+                        <button type="button" id="uploadBtn">+</button>
+                        <input type="file" id="profilePic" accept="image/*">
+                        <img id="previewImage" src="https://via.placeholder.com/100" alt="Photo de profil">
+                    </div>
+                    <div class="form-group">
+                        <label for="fullName">Nom Complet :</label>
+                        <input type="text" id="fullName" name="fullName" value="Ainouche lydia">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email :</label>
+                        <input type="email" id="email" name="email" value="lydia.ain@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Téléphone :</label>
+                        <input type="tel" id="phone" name="phone" value="+213 123 456 789">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Adresse :</label>
+                        <input type="text" id="address" name="address" value="Alger, Algérie">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            <button type="button" id="changePasswordBtn">Modifier mot de passe</button>
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn" id="updateBtn">Mettre à jour</button>
+                </form>
+            </section>
+        </main>
+    </div>
+   
+    <div id="passwordPopup" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close-btn">&times;</span>
+            <h2>Veuillez saisir votre mot de passe actuel</h2>
+            <form id="passwordForm">
+                <input type="password" id="currentPassword" placeholder="Mot de passe actuel" required>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="profil.js"></script>
+    <script>
+        document.getElementById('profilePic').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('profileImage').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+</html>

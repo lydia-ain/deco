@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Ventes - Admin</title>
+    <link rel="stylesheet" href="styles3.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Admin</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="ADMIN.html">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html">Produits</a></li>
+                    <li><a href="commandeadmin.html">Commandes</a></li>
+                    <li><a href="clientadmin.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html">Paramètres</a></li>
+                    <li><a href="ventes.html" class="active">Ventes</a></li>
+                </ul>
+            </nav>
+        </aside>
+    
+        <main class="main-content">
+            <header class="header">
+                <h1>Gestion des Ventes</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </header>
+    
+            <section class="sales-list">
+                <h2>Liste des Ventes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Vente</th>
+                            <th>Client</th>
+                            <th>Produit</th>
+                            <th>Quantité</th>
+                            <th>Prix Total</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>John Doe</td>
+                            <td>Produit A</td>
+                            <td>2</td>
+                            <td>1000 DA</td>
+                            <td>01/03/2025</td>
+                            <td>
+                                <button class="view-btn">Voir</button>
+                              
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jane Smith</td>
+                            <td>Produit B</td>
+                            <td>1</td>
+                            <td>500 DA</td>
+                            <td>02/03/2025</td>
+                            <td>
+                                <button class="view-btn">Vendu</button>
+                                
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

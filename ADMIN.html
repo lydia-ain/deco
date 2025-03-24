@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin E-commerce</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admin-container">
+        <!-- Barre latérale -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Admin</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html">Produits</a></li>
+                    <li><a href="commandeadm.html">Commandes</a></li>
+                    <li><a href="gestionclient.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html">Paramètres</a></li>
+                    <li><a href="ventes.html">Ventes</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        
+        <main class="main-content">
+           
+            <header class="header">
+                <h1>Tableau de bord</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img src="https://th.bing.com/th/id/R.cbfd6ba2d5bad6e9ea66646541ed981f?rik=%2fVO%2bcAEfrZGzMw&pid=ImgRaw&r=0" alt="Admin Avatar">
+                </div>
+            </header>
+
+            
+            <section class="stats">
+                <div class="stat-card">
+                    <h3><a href="produitadmin.html">Produits</a></h3>
+                    <p>120</p>
+                </div>
+                <div class="stat-card">
+                    <h3><a href="commandeadm.html">Commandes</a></h3>
+                    <p>45</p>
+                </div>
+                <div class="stat-card">
+                    <h3><a href="gestionclient.html">Clients</a></h3>
+                    <p>85</p>
+                </div>
+            </section>
+
+            
+            <section class="recent-orders">
+                <h2>Dernières commandes</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Commande</th>
+                            <th>Client</th>
+                            <th>Date</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#12345</td>
+                            <td>SAMY </td>
+                            <td>2023-10-01</td>
+                            <td><span class="status completed">Complétée</span></td>
+                        </tr>
+                        <tr>
+                            <td>#12346</td>
+                            <td>Marie </td>
+                            <td>2023-10-02</td>
+                            <td><span class="status pending">En attente</span></td>
+                        </tr>
+                        <tr>
+                            <td>#12347</td>
+                            <td>BATMAN</td>
+                            <td>2023-10-03</td>
+                            <td><span class="status cancelled">Annulée</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

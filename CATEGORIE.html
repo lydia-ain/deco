@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Catégories</title>
+    <link rel="stylesheet" href="styles2.css">
+    
+</head>
+<body>
+    <body>
+        <div class="admin-container">
+        
+            <aside class="sidebar">
+                <div class="logo">
+                    <h2>Admin</h2>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="ADMIN.html" >Tableau de bord</a></li>
+                        <li><a href="produitadmin.html">Produits</a></li>
+                        <li><a href="commandeadm.html">Commandes</a></li>
+                        <li><a href="gestionclient.html">Clients</a></li>
+                        <li><a href="CATEGORIE.html"class="active">Categories</a></li>
+                        <li><a href="parametre.html">Paramètres</a></li>
+                        <li><a href="ventes.html">Ventes</a></li>
+                    </ul>
+                </nav>
+            </aside>
+    
+            
+            <main class="main-content">
+               
+                <header class="header">
+                    <h1>Catégories</h1>
+                    <div class="user-info">
+                        <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                        <img src="https://th.bing.com/th/id/R.cbfd6ba2d5bad6e9ea66646541ed981f?rik=%2fVO%2bcAEfrZGzMw&pid=ImgRaw&r=0" alt="Admin Avatar">
+                    </div>
+                </header>
+    
+               
+    
+                <section class="add-category">
+                    <h2>Ajouter une Catégorie</h2>
+                    <form id="addCategoryForm">
+                        <input type="text" id="categoryName" placeholder="Nom de la catégorie" required>
+                        <button type="submit">Ajouter</button>
+                    </form>
+                </section>   
+    <div class="admin-container">
+        <main class="main-content">
+            <header class="header">
+                <h1>Gestion des Catégories</h1>
+            </header>
+            <section class="category-list">
+           
+                    <div class="category-card" data-category="chambre">
+                        <span class="category-name">Chambre</span>
+                        <div class="buttons">
+                            <button class="edit-btn" onclick="openEditModal('chambre')">Modifier</button>
+                            <button class="delete-btn">Supprimer</button>
+                        </div>
+                    </div>
+                    
+                
+                <div class="category-card" data-category="salon">
+                    <span class="category-name">Salon</span>
+                    <div class="category-icon"></div>
+                    <div class="buttons">
+                        <button class="delete-btn">Supprimer</button>
+                        <button class="edit-btn" onclick="openEditModal('salon')">Modifier</button>
+                    </div>
+                </div>
+                <div class="category-card" data-category="maison">
+                    <span class="category-name">Maison</span>
+                    <div class="category-icon"></div>
+                    <div class="buttons">
+                        <button class="delete-btn">Supprimer</button>
+                        <button class="edit-btn" onclick="openEditModal('maison')">Modifier</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeEditModal()">×</button>
+            <h2>Modifier la Catégorie</h2>
+            <form id="editCategoryForm">
+                <input type="hidden" id="editCategoryId">
+                <label for="editCategoryName">Nom de la catégorie :</label>
+                <input type="text" id="editCategoryName" required>
+                
+                <label for="editCategoryImage">Changer l’image :</label>
+                <input type="file" id="editCategoryImage" accept="image/*">
+                
+                <button type="submit">Enregistrer</button>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+    const addCategoryForm = document.getElementById("addCategoryForm");
+    const categoryList = document.querySelector(".category-list");
+    const editModal = document.getElementById("editModal");
+    const editCategoryForm = document.getElementById("editCategoryForm");
+
+    if (!addCategoryForm || !categoryList) {
+        console.error("Erreur : Impossible de trouver le formulaire ou la liste des catégories !");
+        return;
+    }
+
+    addCategoryForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        let categoryName = document.getElementById("categoryName").value.trim();
+
+        if (categoryName === "") {
+            alert("Veuillez entrer un nom de catégorie !");
+            return;
+        }
+
+        if (document.querySelector(`[data-category="${categoryName.toLowerCase()}"]`)) {
+            alert("Cette catégorie existe déjà !");
+            return;
+        }
+
+        // Création de la carte de catégorie
+        let newCard = document.createElement("div");
+        newCard.classList.add("category-card");
+        newCard.setAttribute("data-category", categoryName.toLowerCase());
+
+        newCard.innerHTML = `
+            <span class="category-name">${categoryName}</span>
+            <div class="buttons">
+                <button class="delete-btn">Supprimer</button>
+                <button class="edit-btn">Modifier</button>
+            </div>
+        `;
+
+        categoryList.appendChild(newCard);
+        document.getElementById("categoryName").value = "";
+    });
+
+    // Gestion des boutons Supprimer et Modifier
+    document.addEventListener("click", function (event) {
+        let target = event.target;
+
+        // Suppression d'une catégorie
+        if (target.classList.contains("delete-btn")) {
+            target.closest(".category-card").remove();
+        }
+
+        // Ouverture du popup de modification
+        if (target.classList.contains("edit-btn")) {
+            let categoryCard = target.closest(".category-card");
+            let categoryId = categoryCard.getAttribute("data-category");
+            let categoryName = categoryCard.querySelector(".category-name").innerText;
+
+            document.getElementById("editCategoryId").value = categoryId;
+            document.getElementById("editCategoryName").value = categoryName;
+            editModal.classList.add("show");
+        }
+    });
+
+    // Fermeture de la modale
+    document.querySelector(".close-btn").addEventListener("click", function () {
+        editModal.classList.remove("show");
+    });
+
+    // Modification de la catégorie
+    editCategoryForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        let categoryId = document.getElementById("editCategoryId").value;
+        let newName = document.getElementById("editCategoryName").value.trim();
+        let newImage = document.getElementById("editCategoryImage").files[0];
+
+        let categoryCard = document.querySelector(`[data-category="${categoryId}"]`);
+        if (!categoryCard) return;
+
+        // Mise à jour du nom
+        categoryCard.querySelector(".category-name").innerText = newName;
+        categoryCard.setAttribute("data-category", newName.toLowerCase());
+
+        // Mise à jour de l'image si un fichier est sélectionné
+        if (newImage) {
+            let reader = new FileReader();
+            reader.onload = function (e) {
+                categoryCard.style.backgroundImage = `url('${e.target.result}')`;
+            };
+            reader.readAsDataURL(newImage);
+        }
+
+        editModal.classList.remove("show");
+    });
+});
+
+        </script>
+        
+    
+   </body>
+</html>

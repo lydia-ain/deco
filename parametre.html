@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres - Gestion des Commandes</title>
+    <link rel="stylesheet" href="parametre.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Admin</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="ADMIN.html">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html">Produits</a></li>
+                    <li><a href="commandeadmin.html">Commandes</a></li>
+                    <li><a href="gestionclient.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html" class="active">Paramètres</a></li>
+                </ul>
+            </nav>
+        </aside>
+    
+        <main class="main-content">
+            <header class="header">
+                <h1>Paramètres</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </header>
+    
+            <section class="settings-section">
+                <h2>Gestion des Paramètres</h2>
+                
+                <!-- Formulaire de modification des paramètres -->
+                <form action="#" method="POST">
+                    <div class="form-group">
+                        <label for="siteName">Nom du Site :</label>
+                        <input type="text" id="siteName" name="siteName" placeholder="Entrez le nom du site">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteEmail">Email du Site :</label>
+                        <input type="email" id="siteEmail" name="siteEmail" placeholder="Entrez l'email du site">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteCurrency">Devise :</label>
+                        <select id="siteCurrency" name="siteCurrency">
+                            <option value="DZD">DZD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="siteLanguage">Langue :</label>
+                        <select id="siteLanguage" name="siteLanguage">
+                            <option value="fr">Français</option>
+                            <option value="en">Anglais</option>
+                            <option value="ar">Arabe</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="save-btn">Enregistrer</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="script3.js"></script>
+</body>
+</html>

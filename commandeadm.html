@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Commandes</title>
+    <link rel="stylesheet" href="styles4.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Admin</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="ADMIN.html">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html">Produits</a></li>
+                    <li><a href="commandeadmin.html" class="active">Commandes</a></li>
+                    <li><a href="gestionclient.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html">Paramètres</a></li>
+                </ul>
+            </nav>
+        </aside>
+    
+        <main class="main-content">
+            <header class="header">
+                <h1>Gestion des Commandes</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </header>
+    
+            <section class="order-list">
+                <h2>Liste des Commandes</h2>
+                <div class="orders">
+                    <div class="order-card" data-id="1">
+                        <h3>Commande #001</h3>
+                        <p>Client: John Doe</p>
+                        <p>Produit: Vase en porcelaine</p>
+                        <p>Quantité: 2</p>
+                        <p>Prix total: 4000 DA</p>
+                        <p>Status: En attente</p>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="openPopup(1)">Voir Détails</button>
+                            <button class="edit-btn">Supprimer</button>
+                        </div>
+                    </div>
+    
+                    <div class="order-card" data-id="2">
+                        <h3>Commande #002</h3>
+                        <p>Client: Jane Smith</p>
+                        <p>Produit: Tableau moderne</p>
+                        <p>Quantité: 1</p>
+                        <p>Prix total: 1500 DA</p>
+                        <p>Status: Expédiée</p>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="openPopup(2)">Voir Détails</button>
+                            <button class="edit-btn">Supprimer</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+   
+    <div id="orderPopup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h2>Détails de la Commande</h2>
+            
+            <!-- Informations du client -->
+            <div class="client-info">
+                <p><strong>Nom :</strong> <span id="clientName"></span></p>
+                <p><strong>Prénom :</strong> <span id="clientFirstName"></span></p>
+                <p><strong>Numéro de téléphone :</strong> <span id="clientPhone"></span></p>
+                <p><strong>Email :</strong> <span id="clientEmail"></span></p>
+                <p><strong>Wilaya :</strong> <span id="clientWilaya"></span></p>
+                <p><strong>Commune :</strong> <span id="clientCommune"></span></p>
+                <p><strong>Date de la commande :</strong> <span id="orderDate"></span></p>
+            </div>
+    
+            <!-- Détails de la commande -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Produit</th>
+                        <th>Quantité</th>
+                        <th>Taille</th>
+                        <th>Couleur</th>
+                        <th>Prix</th>
+                    </tr>
+                </thead>
+                <tbody id="orderDetails">
+                
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5"><strong>Frais livraison :</strong></td>
+                        <td><strong>0 DA</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5"><strong>Total :</strong></td>
+                        <td id="totalPrice"><strong>0 DA</strong></td>
+                    </tr>
+                </tfoot>
+            </table>
+    
+            <!-- Bouton d'impression -->
+            <button class="print-btn" onclick="printOrder()">Imprimer</button>
+        </div>
+    </div>
+    
+    <script src="script3.js"></script>
+    <script>
+      // Exemple de données de commandes
+const orders = {
+    1: {
+        clientName: "John",
+        clientFirstName: "Doe",
+        clientPhone: "+213 123 456 789",
+        clientEmail: "john.doe@example.com",
+        clientWilaya: "Alger",
+        clientCommune: "Hydra",
+        orderDate: "2025-03-09",
+        items: [
+            { image: "https://th.bing.com/th?id=OIF.Ox6lj%2flTUkUXoKg%2bcqCgBQ&w=190&h=190&c=7&r=0&o=5&dpr=1.5&pid=1.7", name: "Vase en porcelaine", quantity: 2, size: "M", color: "Blanc", price: 2000 }
+        ],
+        total: 4000
+    },
+    2: {
+        clientName: "Jane",
+        clientFirstName: "Smith",
+        clientPhone: "+213 987 654 321",
+        clientEmail: "jane.smith@example.com",
+        clientWilaya: "Oran",
+        clientCommune: "Bir El Djir",
+        orderDate: "2025-03-10",
+        items: [
+            { image: "https://th.bing.com/th/id/OIP.vblSsmkfQZ_B7yJwj0jLHwAAAA?rs=1&pid=ImgDetMain", name: "Tableau moderne", quantity: 1, size: "L", color: "Multicolore", price: 1500 }
+        ],
+        total: 1500
+    }
+};
+
+// Ouvrir le popup avec les détails de la commande
+function openPopup(orderId) {
+    const order = orders[orderId]; // Récupérer les données de la commande en fonction de l'ID
+
+    // Afficher la popup
+    document.getElementById("orderPopup").style.display = "flex";
+
+    // Remplir les informations du client
+    document.getElementById("clientName").textContent = order.clientName;
+    document.getElementById("clientFirstName").textContent = order.clientFirstName;
+    document.getElementById("clientPhone").textContent = order.clientPhone;
+    document.getElementById("clientEmail").textContent = order.clientEmail;
+    document.getElementById("clientWilaya").textContent = order.clientWilaya;
+    document.getElementById("clientCommune").textContent = order.clientCommune;
+    document.getElementById("orderDate").textContent = order.orderDate;
+
+    // Remplir les détails de la commande
+    const orderDetails = document.getElementById("orderDetails");
+    orderDetails.innerHTML = ''; // Réinitialiser les détails précédents
+
+    order.items.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+            <td>${item.name}</td>
+            <td>${item.quantity}</td>
+            <td>${item.size}</td>
+            <td>${item.color}</td>
+            <td>${item.price} DA</td>
+        `;
+        orderDetails.appendChild(row);
+    });
+
+    
+    document.getElementById("totalPrice").textContent = `${order.total} DA`;
+}
+
+function closePopup() {
+    document.getElementById("orderPopup").style.display = "none";
+}
+
+
+function printOrder() {
+    const printWindow = window.open('', '', 'height=800, width=1000');
+    printWindow.document.write('<html><head><title>Impression de la Commande</title></head><body>');
+    printWindow.document.write(document.querySelector("#orderPopup .popup-content").innerHTML);
+    printWindow.document.write('</body></html>');
+    printWindow.document.close();
+    printWindow.print();
+}
+
+    </script>
+</body>
+</html>

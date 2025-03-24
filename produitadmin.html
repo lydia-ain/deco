@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Produits</title>
+    <link rel="stylesheet" href="styles1.css">
+</head>
+<body>
+    <div class="admin-container">
+        
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Admin</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="ADMIN.html">Tableau de bord</a></li>
+                    <li><a href="produitadmin.html" class="active">Produits</a></li>
+                    <li><a href="commandeadm.html">Commandes</a></li>
+                    <li><a href="gestionclient.html">Clients</a></li>
+                    <li><a href="CATEGORIE.html">Categories</a></li>
+                    <li><a href="parametre.html">Paramètres</a></li>
+                    <li><a href="ventes.html">Ventes</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+    
+        <main class="main-content">
+          
+            <header class="header">
+                <h1>Gestion des Produits</h1>
+                <div class="user-info">
+                    <span><a href="profil.html">AINOUCHE LYDIA</a></span>
+                    <img src="https://via.placeholder.com/40" alt="Admin Avatar">
+                </div>
+            </header>
+
+            <section class="product-form">
+                <h2>Ajouter/Modifier un Produit</h2>
+                <form id="productForm">
+                    <div class="form-group">
+                        <label for="productName">Nom du Produit</label>
+                        <input type="text" id="productName" name="productName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDescription">Description</label>
+                        <textarea id="productDescription" name="productDescription" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Prix</label>
+                        <input type="number" id="productPrice" name="productPrice" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productImage">Image du Produit</label>
+                        <input type="file" id="productImage" name="productImage" accept="image/*">
+                    </div>
+                    <button type="submit" id="saveProduct">Enregistrer</button>
+                </form>
+            </section>
+
+            <section class="product-list">
+                <h2>Liste des Produits</h2>
+                <div class="products">
+                    
+                    <div class="product-card">
+                        <img src="https://th.bing.com/th/id/R.75dae99d8c57e1bcbea3c5b625d8e44c?rik=g1YMcQTiotJ0fw&riu=http%3a%2f%2fupload.wikimedia.org%2fwikipedia%2fcommons%2fb%2fb8%2fChinese_vase.jpg&ehk=6jU%2bMtEd8FFkR0E7f2%2fV1J%2bI1Z%2baL8y17dXp%2bSFvfFU%3d&risl=&pid=ImgRaw&r=0" alt="Produit 1" class="product-image">
+                        <div class="product-details">
+                            <h3>Nom du Produit 1</h3>
+                            <p>Description du produit 1.</p>
+                            <p>Prix: 2000DA</p>
+                            <div class="actions">
+                                <button class="edit-btn">Modifier</button>
+                                <button class="delete-btn">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                   
+                    <div class="product-card">
+                        <img src="https://th.bing.com/th/id/OIP.TkoYfG4Jal1g7al-S5EANgHaHa?rs=1&pid=ImgDetMain" alt="Produit 2" class="product-image">
+                        <div class="product-details">
+                            <h3>Nom du Produit 2</h3>
+                            <p>Description du produit 2.</p>
+                            <p>Prix: 1500 DA </p>
+                            <div class="actions">
+                                <button class="edit-btn">Modifier</button>
+                                <button class="delete-btn">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
