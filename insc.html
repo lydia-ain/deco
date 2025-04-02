@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Décoration Maison</title>
     <link rel="icon" type="logo" href="logo.PNG">
-    <link rel="stylesheet" href="styles.css">
     <style>
         /* Arrière-plan avec une image floue */
         body {
@@ -105,6 +104,44 @@
         .g_id_signin {
             width: 100%;
         }
+
+        /* Styles pour la récupération de mot de passe */
+        .forgot-password {
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .forgot-password a {
+            color: #8a583c;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+
+        #forgot-password-step1,
+        #forgot-password-step2,
+        #forgot-password-step3 {
+            display: none;
+        }
+
+        .password-message {
+            color: #5a3e2b;
+            font-size: 14px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
     </style>
 </head>
 
@@ -148,10 +185,10 @@
                 <div class="g_id_signin" data-type="standard"></div>
             </div>
 
-            <a class="switch-link" onclick="toggleForm()">Déjà un compte ? Connectez-vous</a>
+            <a class="switch-link" onclick="showForm('connexionForm')">Déjà un compte ? Connectez-vous</a>
         </div>
 
-        <!-- Formulaire de connexion (Caché au départ) -->
+        <!-- Formulaire de connexion -->
         <div id="connexionForm" style="display: none;">
             <h2>Connexion</h2>
             <form action="traitement_connexion.php" method="POST">
@@ -165,7 +202,61 @@
                 </div>
                 <button type="submit" class="btn-submit">Se connecter</button>
             </form>
-            <a class="switch-link" onclick="toggleForm()">Pas encore inscrit ? Créez un compte</a>
+            
+            <!-- Lien "Mot de passe oublié" -->
+            <div class="forgot-password">
+                <a href="#" onclick="showForm('forgot-password-step1')">Mot de passe oublié ?</a>
+            </div>
+            
+            <a class="switch-link" onclick="showForm('inscriptionForm')">Pas encore inscrit ? Créez un compte</a>
+        </div>
+
+        <!-- Étape 1: Demande d'email pour récupération -->
+        <div id="forgot-password-step1">
+            <h2>Récupération de mot de passe</h2>
+            <p class="password-message">Veuillez entrer votre adresse email pour recevoir un code de réinitialisation.</p>
+            
+            <form id="recovery-email-form">
+                <div class="form-group">
+                    <label for="recovery-email">Adresse Email</label>
+                    <input type="email" id="recovery-email" name="recovery-email" required>
+                </div>
+                <button type="button" class="btn-submit" onclick="showForm('forgot-password-step2')">Envoyer le code</button>
+                <button type="button" class="btn-submit btn-secondary" onclick="showForm('connexionForm')">Annuler</button>
+            </form>
+        </div>
+
+        <!-- Étape 2: Saisie du code reçu -->
+        <div id="forgot-password-step2">
+            <h2>Vérification du code</h2>
+            <p class="password-message">Un code a été envoyé à votre adresse email. Veuillez l'entrer ci-dessous.</p>
+            
+            <form id="recovery-code-form">
+                <div class="form-group">
+                    <label for="verification-code">Code de vérification</label>
+                    <input type="text" id="verification-code" name="verification-code" required>
+                </div>
+                <button type="button" class="btn-submit" onclick="showForm('forgot-password-step3')">Vérifier le code</button>
+                <button type="button" class="btn-submit btn-secondary" onclick="showForm('forgot-password-step1')">Retour</button>
+            </form>
+        </div>
+
+        <!-- Étape 3: Saisie du nouveau mot de passe -->
+        <div id="forgot-password-step3">
+            <h2>Nouveau mot de passe</h2>
+            <p class="password-message">Veuillez entrer votre nouveau mot de passe.</p>
+            
+            <form id="new-password-form">
+                <div class="form-group">
+                    <label for="new-password">Nouveau mot de passe</label>
+                    <input type="password" id="new-password" name="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-new-password">Confirmer le nouveau mot de passe</label>
+                    <input type="password" id="confirm-new-password" name="confirm-new-password" required>
+                </div>
+                <button type="button" class="btn-submit" onclick="showForm('connexionForm')">Enregistrer</button>
+            </form>
         </div>
     </div>
 
@@ -177,19 +268,22 @@
             // Envoyer le token au serveur pour vérifier l'identité
         }
 
-        function toggleForm() {
-            let inscriptionForm = document.getElementById("inscriptionForm");
-            let connexionForm = document.getElementById("connexionForm");
-
-            if (inscriptionForm.style.display === "none") {
-                inscriptionForm.style.display = "block";
-                connexionForm.style.display = "none";
-            } else {
-                inscriptionForm.style.display = "none";
-                connexionForm.style.display = "block";
-            }
+        function showForm(formId) {
+            // Masquer tous les formulaires
+            document.getElementById('inscriptionForm').style.display = 'none';
+            document.getElementById('connexionForm').style.display = 'none';
+            document.getElementById('forgot-password-step1').style.display = 'none';
+            document.getElementById('forgot-password-step2').style.display = 'none';
+            document.getElementById('forgot-password-step3').style.display = 'none';
+            
+            // Afficher le formulaire demandé
+            document.getElementById(formId).style.display = 'block';
         }
+
+        // Au chargement, afficher le formulaire de connexion
+        window.onload = function() {
+            showForm('connexionForm');
+        };
     </script>
 </body>
-
 </html>
